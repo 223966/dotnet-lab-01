@@ -34,6 +34,26 @@ namespace WindowsFormsApp1
             this.addButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.toysListBox = new System.Windows.Forms.ListBox();
+            this.speedGroupBox = new System.Windows.Forms.GroupBox();
+            this.speedSlider = new System.Windows.Forms.TrackBar();
+            this.speedValue = new System.Windows.Forms.TextBox();
+            this.speedLabel = new System.Windows.Forms.TextBox();
+            this.heightGroupBox = new System.Windows.Forms.GroupBox();
+            this.heightSlider = new System.Windows.Forms.TrackBar();
+            this.heightValue = new System.Windows.Forms.TextBox();
+            this.heightLabel = new System.Windows.Forms.TextBox();
+            this.depthGroupBox = new System.Windows.Forms.GroupBox();
+            this.depthSlider = new System.Windows.Forms.TrackBar();
+            this.depthValue = new System.Windows.Forms.TextBox();
+            this.depthLabel = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.speedGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.speedSlider)).BeginInit();
+            this.heightGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.heightSlider)).BeginInit();
+            this.depthGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.depthSlider)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // categoriesListBox
@@ -44,7 +64,7 @@ namespace WindowsFormsApp1
             this.categoriesListBox.Name = "categoriesListBox";
             this.categoriesListBox.Size = new System.Drawing.Size(174, 260);
             this.categoriesListBox.TabIndex = 1;
-            this.categoriesListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.categoriesListBox.SelectedIndexChanged += new System.EventHandler(this.categoriesListBox_SelectedIndexChanged);
             this.categoriesListBox.DataSource = Categories;
             // 
             // addButton
@@ -55,7 +75,7 @@ namespace WindowsFormsApp1
             this.addButton.TabIndex = 2;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.button1_Click);
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // removeButton
             // 
@@ -65,7 +85,7 @@ namespace WindowsFormsApp1
             this.removeButton.TabIndex = 3;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.button2_Click);
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
             // toysListBox
             // 
@@ -77,13 +97,138 @@ namespace WindowsFormsApp1
             this.toysListBox.Size = new System.Drawing.Size(168, 260);
             this.toysListBox.TabIndex = 4;
             this.toysListBox.ValueMember = "Id";
+            this.toysListBox.SelectedIndexChanged += new System.EventHandler(this.toysListBox_SelectedIndexChanged);
             this.toysListBox.DataSource = Toys;
+            // 
+            // speedGroupBox
+            // 
+            this.speedGroupBox.Controls.Add(this.speedSlider);
+            this.speedGroupBox.Controls.Add(this.speedValue);
+            this.speedGroupBox.Controls.Add(this.speedLabel);
+            this.speedGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.speedGroupBox.Name = "speedGroupBox";
+            this.speedGroupBox.Size = new System.Drawing.Size(273, 135);
+            this.speedGroupBox.TabIndex = 5;
+            this.speedGroupBox.TabStop = false;
+            this.speedGroupBox.Visible = false;
+            // 
+            // speedSlider
+            // 
+            this.speedSlider.Location = new System.Drawing.Point(21, 61);
+            this.speedSlider.Name = "speedSlider";
+            this.speedSlider.Size = new System.Drawing.Size(234, 56);
+            this.speedSlider.TabIndex = 6;
+            // 
+            // speedValue
+            // 
+            this.speedValue.Location = new System.Drawing.Point(155, 22);
+            this.speedValue.Name = "speedValue";
+            this.speedValue.ReadOnly = true;
+            this.speedValue.Size = new System.Drawing.Size(100, 22);
+            this.speedValue.TabIndex = 1;
+            // 
+            // speedLabel
+            // 
+            this.speedLabel.Location = new System.Drawing.Point(21, 21);
+            this.speedLabel.Name = "speedLabel";
+            this.speedLabel.ReadOnly = true;
+            this.speedLabel.Size = new System.Drawing.Size(100, 22);
+            this.speedLabel.TabIndex = 0;
+            this.speedLabel.Text = "Speed";
+            // 
+            // heightGroupBox
+            // 
+            this.heightGroupBox.Controls.Add(this.heightSlider);
+            this.heightGroupBox.Controls.Add(this.heightValue);
+            this.heightGroupBox.Controls.Add(this.heightLabel);
+            this.heightGroupBox.Location = new System.Drawing.Point(3, 144);
+            this.heightGroupBox.Name = "heightGroupBox";
+            this.heightGroupBox.Size = new System.Drawing.Size(273, 135);
+            this.heightGroupBox.TabIndex = 7;
+            this.heightGroupBox.TabStop = false;
+            this.heightGroupBox.Visible = false;
+            this.heightGroupBox.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // heightSlider
+            // 
+            this.heightSlider.Location = new System.Drawing.Point(21, 61);
+            this.heightSlider.Name = "heightSlider";
+            this.heightSlider.Size = new System.Drawing.Size(234, 56);
+            this.heightSlider.TabIndex = 6;
+            // 
+            // heightValue
+            // 
+            this.heightValue.Location = new System.Drawing.Point(155, 22);
+            this.heightValue.Name = "heightValue";
+            this.heightValue.ReadOnly = true;
+            this.heightValue.Size = new System.Drawing.Size(100, 22);
+            this.heightValue.TabIndex = 1;
+            this.heightValue.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // heightLabel
+            // 
+            this.heightLabel.Location = new System.Drawing.Point(21, 21);
+            this.heightLabel.Name = "heightLabel";
+            this.heightLabel.ReadOnly = true;
+            this.heightLabel.Size = new System.Drawing.Size(100, 22);
+            this.heightLabel.TabIndex = 0;
+            this.heightLabel.Text = "Height";
+            // 
+            // depthGroupBox
+            // 
+            this.depthGroupBox.Controls.Add(this.depthSlider);
+            this.depthGroupBox.Controls.Add(this.depthValue);
+            this.depthGroupBox.Controls.Add(this.depthLabel);
+            this.depthGroupBox.Location = new System.Drawing.Point(3, 285);
+            this.depthGroupBox.Name = "depthGroupBox";
+            this.depthGroupBox.Size = new System.Drawing.Size(273, 135);
+            this.depthGroupBox.TabIndex = 8;
+            this.depthGroupBox.TabStop = false;
+            this.depthGroupBox.Visible = false;
+            this.depthGroupBox.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // depthSlider
+            // 
+            this.depthSlider.Location = new System.Drawing.Point(21, 61);
+            this.depthSlider.Name = "depthSlider";
+            this.depthSlider.Size = new System.Drawing.Size(234, 56);
+            this.depthSlider.TabIndex = 6;
+            // 
+            // depthValue
+            // 
+            this.depthValue.Location = new System.Drawing.Point(155, 22);
+            this.depthValue.Name = "depthValue";
+            this.depthValue.ReadOnly = true;
+            this.depthValue.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.depthValue.Size = new System.Drawing.Size(100, 22);
+            this.depthValue.TabIndex = 1;
+            this.depthValue.TextChanged += new System.EventHandler(this.depthValue_TextChanged);
+            // 
+            // depthLabel
+            // 
+            this.depthLabel.Location = new System.Drawing.Point(21, 21);
+            this.depthLabel.Name = "depthLabel";
+            this.depthLabel.ReadOnly = true;
+            this.depthLabel.Size = new System.Drawing.Size(100, 22);
+            this.depthLabel.TabIndex = 0;
+            this.depthLabel.Text = "Depth";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.speedGroupBox);
+            this.flowLayoutPanel1.Controls.Add(this.heightGroupBox);
+            this.flowLayoutPanel1.Controls.Add(this.depthGroupBox);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(631, 12);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(297, 429);
+            this.flowLayoutPanel1.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 504);
+            this.ClientSize = new System.Drawing.Size(981, 491);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.toysListBox);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);
@@ -92,6 +237,16 @@ namespace WindowsFormsApp1
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.speedGroupBox.ResumeLayout(false);
+            this.speedGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.speedSlider)).EndInit();
+            this.heightGroupBox.ResumeLayout(false);
+            this.heightGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.heightSlider)).EndInit();
+            this.depthGroupBox.ResumeLayout(false);
+            this.depthGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.depthSlider)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -102,6 +257,19 @@ namespace WindowsFormsApp1
         private Button addButton;
         private Button removeButton;
         private ListBox toysListBox;
+        private GroupBox speedGroupBox;
+        private GroupBox heightGroupBox;
+        private TrackBar heightSlider;
+        private TextBox heightValue;
+        private TextBox heightLabel;
+        private TrackBar speedSlider;
+        private TextBox speedValue;
+        private TextBox speedLabel;
+        private GroupBox depthGroupBox;
+        private TrackBar depthSlider;
+        private TextBox depthValue;
+        private TextBox depthLabel;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
 

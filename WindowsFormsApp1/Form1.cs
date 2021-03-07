@@ -30,12 +30,24 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void categoriesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void toysListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (toysListBox.SelectedItem == null)
+            {
+                return;
+            }
+
+            resetControls();
+            string selectedCategory = toysListBox.SelectedItem.ToString().Split('.').Last();
+            showControls(selectedCategory);
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
         {
             object selectedCategory = categoriesListBox.SelectedItem;
 
@@ -52,15 +64,9 @@ namespace WindowsFormsApp1
             toy.Name = toyName;
 
             Toys.Add(toy);
-
-            // Add group box: Speed
-            // Add group box: Height
-            // Add group box: Depth
-            // Add group box: Properties (visible if toy is selected)
-
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void removeButton_Click(object sender, EventArgs e)
         {
             Toy selectedToy = toysListBox.SelectedItem as Toy;
 
@@ -70,6 +76,7 @@ namespace WindowsFormsApp1
             }
 
             Toys.Remove(selectedToy);
+            resetControls();
         }
 
         private int getToyIndex(string selectedCategory)
@@ -81,6 +88,52 @@ namespace WindowsFormsApp1
                 maxIndex = toysFromSelectedCategory.Max(Toy => Toy.Id);
             }
             return maxIndex + 1;
+        }
+
+        private void showControls(string selectedCategory)
+        {
+            ToyCategory toyCategoryEnum = (ToyCategory)Enum.Parse(typeof(ToyCategory), selectedCategory);
+            switch (toyCategoryEnum)
+            {
+                case ToyCategory.Car:
+                    speedGroupBox.Visible = true;
+                    break;
+                case ToyCategory.Plane:
+                    speedGroupBox.Visible = true;
+                    heightGroupBox.Visible = true;
+                    break;
+                case ToyCategory.Submarine:
+                    speedGroupBox.Visible = true;
+                    depthGroupBox.Visible = true;
+                    break;
+            }
+        }
+
+        private void resetControls()
+        {
+            speedGroupBox.Visible = false;
+            depthGroupBox.Visible = false;
+            heightGroupBox.Visible = false;
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void depthValue_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
