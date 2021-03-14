@@ -16,6 +16,8 @@ namespace WindowsFormsApp1
     {
         private static BindingList<string> Categories = new BindingList<string>();
         private static BindingList<Toy> Toys = new BindingList<Toy>();
+        private static Toy SelectedToy;
+        private static string SelectedCategory;
 
         public Form1()
         {
@@ -28,37 +30,62 @@ namespace WindowsFormsApp1
             {
                 Categories.Add(category.ToString());
             }
+
+            SelectedCategory = getSelectedCategory();
+            SelectedToy = getSelectedToy();
+
+            this.toysListBox.DataSource = Toys;
+            this.categoriesListBox.DataSource = Categories;
         }
 
         private void categoriesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            SelectedCategory = getSelectedCategory();
         }
 
         private void toysListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (toysListBox.SelectedItem == null)
+            SelectedToy = getSelectedToy();
+            SelectedCategory = getSelectedToyCategory();
+
+            if (SelectedToy == null)
             {
                 return;
             }
 
+            ToyCategory toyCategoryEnum = (ToyCategory)Enum.Parse(typeof(ToyCategory), SelectedCategory);
+
+            resetBindings();
+
+            switch (toyCategoryEnum)
+            {
+                case ToyCategory.Car:
+                    this.speedValue.DataBindings.Add("Text", SelectedToy, "Speed");
+                    break;
+                case ToyCategory.Plane:
+                    this.speedValue.DataBindings.Add("Text", SelectedToy, "Speed");
+                    this.heightValue.DataBindings.Add("Text", SelectedToy, "Height");
+                    break;
+                case ToyCategory.Submarine:
+                    this.speedValue.DataBindings.Add("Text", SelectedToy, "Speed");
+                    this.depthValue.DataBindings.Add("Text", SelectedToy, "Depth");
+                    break;
+            }
+
             resetControls();
-            string selectedCategory = toysListBox.SelectedItem.ToString().Split('.').Last();
-            showControls(selectedCategory);
+            showControls(SelectedCategory);
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            object selectedCategory = categoriesListBox.SelectedItem;
-
-            if (selectedCategory == null)
+            if (SelectedCategory == null)
             {
                 return;
             }
 
-            Toy toy = ToyFactory.Create(selectedCategory.ToString());
-            int toyIndex = getToyIndex(selectedCategory.ToString());
-            string toyName = $"{selectedCategory}{toyIndex}";
+            Toy toy = ToyFactory.Create(SelectedCategory);
+            int toyIndex = getToyIndex(SelectedCategory);
+            string toyName = $"{SelectedCategory}{toyIndex}";
 
             toy.Id = toyIndex;
             toy.Name = toyName;
@@ -68,14 +95,12 @@ namespace WindowsFormsApp1
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            Toy selectedToy = toysListBox.SelectedItem as Toy;
-
-            if (selectedToy == null)
+            if (SelectedToy == null)
             {
                 return;
             }
 
-            Toys.Remove(selectedToy);
+            Toys.Remove(SelectedToy);
             resetControls();
         }
 
@@ -114,6 +139,32 @@ namespace WindowsFormsApp1
             speedGroupBox.Visible = false;
             depthGroupBox.Visible = false;
             heightGroupBox.Visible = false;
+        }
+
+        private void resetBindings()
+        {
+            this.speedValue.DataBindings.Clear();
+            this.heightValue.DataBindings.Clear();
+            this.depthValue.DataBindings.Clear();
+        }
+
+        private Toy getSelectedToy()
+        {
+            return Toys.FirstOrDefault(x => x.Name == toysListBox.GetItemText(toysListBox.SelectedItem));
+        }
+
+        private string getSelectedCategory()
+        {
+            return categoriesListBox.GetItemText(categoriesListBox.SelectedItem);
+        }
+
+        private string getSelectedToyCategory()
+        {
+            if (SelectedToy == null)
+            {
+                return null;
+            }
+            return SelectedToy.GetType().ToString().Split('.').Last();
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)

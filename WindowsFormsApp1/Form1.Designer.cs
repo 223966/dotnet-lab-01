@@ -46,14 +46,14 @@ namespace WindowsFormsApp1
             this.depthSlider = new System.Windows.Forms.TrackBar();
             this.depthValue = new System.Windows.Forms.TextBox();
             this.depthLabel = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.propertiesContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.speedGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedSlider)).BeginInit();
             this.heightGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.heightSlider)).BeginInit();
             this.depthGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.depthSlider)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.propertiesContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // categoriesListBox
@@ -65,7 +65,6 @@ namespace WindowsFormsApp1
             this.categoriesListBox.Size = new System.Drawing.Size(174, 260);
             this.categoriesListBox.TabIndex = 1;
             this.categoriesListBox.SelectedIndexChanged += new System.EventHandler(this.categoriesListBox_SelectedIndexChanged);
-            this.categoriesListBox.DataSource = Categories;
             // 
             // addButton
             // 
@@ -98,7 +97,6 @@ namespace WindowsFormsApp1
             this.toysListBox.TabIndex = 4;
             this.toysListBox.ValueMember = "Id";
             this.toysListBox.SelectedIndexChanged += new System.EventHandler(this.toysListBox_SelectedIndexChanged);
-            this.toysListBox.DataSource = Toys;
             // 
             // speedGroupBox
             // 
@@ -213,22 +211,22 @@ namespace WindowsFormsApp1
             this.depthLabel.TabIndex = 0;
             this.depthLabel.Text = "Depth";
             // 
-            // flowLayoutPanel1
+            // propertiesContainer
             // 
-            this.flowLayoutPanel1.Controls.Add(this.speedGroupBox);
-            this.flowLayoutPanel1.Controls.Add(this.heightGroupBox);
-            this.flowLayoutPanel1.Controls.Add(this.depthGroupBox);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(631, 12);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(297, 429);
-            this.flowLayoutPanel1.TabIndex = 9;
+            this.propertiesContainer.Controls.Add(this.speedGroupBox);
+            this.propertiesContainer.Controls.Add(this.heightGroupBox);
+            this.propertiesContainer.Controls.Add(this.depthGroupBox);
+            this.propertiesContainer.Location = new System.Drawing.Point(631, 12);
+            this.propertiesContainer.Name = "propertiesContainer";
+            this.propertiesContainer.Size = new System.Drawing.Size(297, 429);
+            this.propertiesContainer.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 491);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.propertiesContainer);
             this.Controls.Add(this.toysListBox);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);
@@ -246,7 +244,7 @@ namespace WindowsFormsApp1
             this.depthGroupBox.ResumeLayout(false);
             this.depthGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.depthSlider)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.propertiesContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -269,7 +267,7 @@ namespace WindowsFormsApp1
         private TrackBar depthSlider;
         private TextBox depthValue;
         private TextBox depthLabel;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel propertiesContainer;
     }
 }
 
