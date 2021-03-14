@@ -8,6 +8,8 @@ namespace WindowsFormsApp1
 {
     interface IAccelerate
     {
+        int Speed { get; set; }
+
         void Accelerate(int change);
     }
 }

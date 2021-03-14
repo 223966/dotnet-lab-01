@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.Classes;
+using WindowsFormsApp1.Interfaces;
 
 namespace WindowsFormsApp1
 {
@@ -53,27 +54,11 @@ namespace WindowsFormsApp1
                 return;
             }
 
-            ToyCategory toyCategoryEnum = (ToyCategory)Enum.Parse(typeof(ToyCategory), SelectedCategory);
-
             resetBindings();
-
-            switch (toyCategoryEnum)
-            {
-                case ToyCategory.Car:
-                    this.speedValue.DataBindings.Add("Text", SelectedToy, "Speed");
-                    break;
-                case ToyCategory.Plane:
-                    this.speedValue.DataBindings.Add("Text", SelectedToy, "Speed");
-                    this.heightValue.DataBindings.Add("Text", SelectedToy, "Height");
-                    break;
-                case ToyCategory.Submarine:
-                    this.speedValue.DataBindings.Add("Text", SelectedToy, "Speed");
-                    this.depthValue.DataBindings.Add("Text", SelectedToy, "Depth");
-                    break;
-            }
-
-            resetControls();
+            addBindings(SelectedCategory);
+            hideControls();
             showControls(SelectedCategory);
+            adjustSliders();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -84,7 +69,7 @@ namespace WindowsFormsApp1
             }
 
             Toy toy = ToyFactory.Create(SelectedCategory);
-            int toyIndex = getToyIndex(SelectedCategory);
+            int toyIndex = getNextAvailableIndex(SelectedCategory);
             string toyName = $"{SelectedCategory}{toyIndex}";
 
             toy.Id = toyIndex;
@@ -101,10 +86,10 @@ namespace WindowsFormsApp1
             }
 
             Toys.Remove(SelectedToy);
-            resetControls();
+            hideControls();
         }
 
-        private int getToyIndex(string selectedCategory)
+        private int getNextAvailableIndex(string selectedCategory)
         {
             IEnumerable<Toy> toysFromSelectedCategory = Toys.Where(toy => toy.GetType().ToString().Split('.').Last() == selectedCategory);
             int maxIndex = 0;
@@ -134,11 +119,46 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void resetControls()
+        private void hideControls()
         {
             speedGroupBox.Visible = false;
             depthGroupBox.Visible = false;
             heightGroupBox.Visible = false;
+        }
+
+        private void adjustSliders()
+        {
+            if (this.speedSlider.Visible)
+            {
+                this.speedSlider.Value = ((IAccelerate)SelectedToy).Speed;
+            }
+            if (this.depthSlider.Visible)
+            {
+                this.depthSlider.Value = ((IDive)SelectedToy).Depth;
+            }
+            if (this.heightSlider.Visible)
+            {
+                this.heightSlider.Value = ((IRise)SelectedToy).Height;
+            }
+        }
+
+        private void addBindings(string selectedCategory)
+        {
+            ToyCategory toyCategoryEnum = (ToyCategory)Enum.Parse(typeof(ToyCategory), selectedCategory);
+            switch (toyCategoryEnum)
+            {
+                case ToyCategory.Car:
+                    this.speedValue.DataBindings.Add("Text", SelectedToy, "Speed");
+                    break;
+                case ToyCategory.Plane:
+                    this.speedValue.DataBindings.Add("Text", SelectedToy, "Speed");
+                    this.heightValue.DataBindings.Add("Text", SelectedToy, "Height");
+                    break;
+                case ToyCategory.Submarine:
+                    this.speedValue.DataBindings.Add("Text", SelectedToy, "Speed");
+                    this.depthValue.DataBindings.Add("Text", SelectedToy, "Depth");
+                    break;
+            }
         }
 
         private void resetBindings()
@@ -167,6 +187,23 @@ namespace WindowsFormsApp1
             return SelectedToy.GetType().ToString().Split('.').Last();
         }
 
+        private void speedSlider_ValueChanged(object sender, EventArgs e)
+        {
+            ((IAccelerate)SelectedToy).Accelerate(this.speedSlider.Value);
+            this.speedValue.Text = ((IAccelerate)SelectedToy).Speed.ToString();
+        }
+
+        private void heightSlider_ValueChanged(object sender, EventArgs e)
+        {
+            ((IRise)SelectedToy).Rise(this.heightSlider.Value);
+            this.heightValue.Text = ((IRise)SelectedToy).Height.ToString();
+        }
+
+        private void depthSlider_ValueChanged(object sender, EventArgs e)
+        {
+            ((IDive)SelectedToy).Dive(this.depthSlider.Value);
+            this.depthValue.Text = ((IDive)SelectedToy).Depth.ToString();
+        }
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
@@ -183,6 +220,11 @@ namespace WindowsFormsApp1
         }
 
         private void depthValue_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

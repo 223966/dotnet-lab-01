@@ -15,12 +15,12 @@ namespace WindowsFormsApp1.Classes
 
         public void Accelerate(int change)
         {
-            this.Speed += change;
+            this.Speed = change;
         }
 
         public void Rise(int change)
         {
-            this.Height += change;
+            this.Height = change;
         }
     }
 }

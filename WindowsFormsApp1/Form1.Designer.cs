@@ -47,6 +47,9 @@ namespace WindowsFormsApp1
             this.depthValue = new System.Windows.Forms.TextBox();
             this.depthLabel = new System.Windows.Forms.TextBox();
             this.propertiesContainer = new System.Windows.Forms.FlowLayoutPanel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.speedGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedSlider)).BeginInit();
             this.heightGroupBox.SuspendLayout();
@@ -100,6 +103,7 @@ namespace WindowsFormsApp1
             // 
             // speedGroupBox
             // 
+            this.speedGroupBox.Controls.Add(this.textBox1);
             this.speedGroupBox.Controls.Add(this.speedSlider);
             this.speedGroupBox.Controls.Add(this.speedValue);
             this.speedGroupBox.Controls.Add(this.speedLabel);
@@ -113,16 +117,18 @@ namespace WindowsFormsApp1
             // speedSlider
             // 
             this.speedSlider.Location = new System.Drawing.Point(21, 61);
+            this.speedSlider.Maximum = 250;
             this.speedSlider.Name = "speedSlider";
             this.speedSlider.Size = new System.Drawing.Size(234, 56);
             this.speedSlider.TabIndex = 6;
+            this.speedSlider.ValueChanged += new System.EventHandler(this.speedSlider_ValueChanged);
             // 
             // speedValue
             // 
-            this.speedValue.Location = new System.Drawing.Point(155, 22);
+            this.speedValue.Location = new System.Drawing.Point(127, 21);
             this.speedValue.Name = "speedValue";
             this.speedValue.ReadOnly = true;
-            this.speedValue.Size = new System.Drawing.Size(100, 22);
+            this.speedValue.Size = new System.Drawing.Size(54, 22);
             this.speedValue.TabIndex = 1;
             // 
             // speedLabel
@@ -136,6 +142,7 @@ namespace WindowsFormsApp1
             // 
             // heightGroupBox
             // 
+            this.heightGroupBox.Controls.Add(this.textBox2);
             this.heightGroupBox.Controls.Add(this.heightSlider);
             this.heightGroupBox.Controls.Add(this.heightValue);
             this.heightGroupBox.Controls.Add(this.heightLabel);
@@ -153,13 +160,14 @@ namespace WindowsFormsApp1
             this.heightSlider.Name = "heightSlider";
             this.heightSlider.Size = new System.Drawing.Size(234, 56);
             this.heightSlider.TabIndex = 6;
+            this.heightSlider.ValueChanged += new System.EventHandler(this.heightSlider_ValueChanged);
             // 
             // heightValue
             // 
-            this.heightValue.Location = new System.Drawing.Point(155, 22);
+            this.heightValue.Location = new System.Drawing.Point(127, 21);
             this.heightValue.Name = "heightValue";
             this.heightValue.ReadOnly = true;
-            this.heightValue.Size = new System.Drawing.Size(100, 22);
+            this.heightValue.Size = new System.Drawing.Size(54, 22);
             this.heightValue.TabIndex = 1;
             this.heightValue.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
@@ -174,6 +182,7 @@ namespace WindowsFormsApp1
             // 
             // depthGroupBox
             // 
+            this.depthGroupBox.Controls.Add(this.textBox3);
             this.depthGroupBox.Controls.Add(this.depthSlider);
             this.depthGroupBox.Controls.Add(this.depthValue);
             this.depthGroupBox.Controls.Add(this.depthLabel);
@@ -188,17 +197,19 @@ namespace WindowsFormsApp1
             // depthSlider
             // 
             this.depthSlider.Location = new System.Drawing.Point(21, 61);
+            this.depthSlider.Maximum = 50;
             this.depthSlider.Name = "depthSlider";
             this.depthSlider.Size = new System.Drawing.Size(234, 56);
             this.depthSlider.TabIndex = 6;
+            this.depthSlider.ValueChanged += new System.EventHandler(this.depthSlider_ValueChanged);
             // 
             // depthValue
             // 
-            this.depthValue.Location = new System.Drawing.Point(155, 22);
+            this.depthValue.Location = new System.Drawing.Point(127, 21);
             this.depthValue.Name = "depthValue";
             this.depthValue.ReadOnly = true;
             this.depthValue.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.depthValue.Size = new System.Drawing.Size(100, 22);
+            this.depthValue.Size = new System.Drawing.Size(54, 22);
             this.depthValue.TabIndex = 1;
             this.depthValue.TextChanged += new System.EventHandler(this.depthValue_TextChanged);
             // 
@@ -220,6 +231,34 @@ namespace WindowsFormsApp1
             this.propertiesContainer.Name = "propertiesContainer";
             this.propertiesContainer.Size = new System.Drawing.Size(297, 429);
             this.propertiesContainer.TabIndex = 9;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(187, 21);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(59, 22);
+            this.textBox1.TabIndex = 7;
+            this.textBox1.Text = "km/h";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(187, 21);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(59, 22);
+            this.textBox2.TabIndex = 8;
+            this.textBox2.Text = "km";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(187, 21);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(59, 22);
+            this.textBox3.TabIndex = 9;
+            this.textBox3.Text = "m";
             // 
             // Form1
             // 
@@ -268,6 +307,9 @@ namespace WindowsFormsApp1
         private TextBox depthValue;
         private TextBox depthLabel;
         private FlowLayoutPanel propertiesContainer;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private TextBox textBox3;
     }
 }
 

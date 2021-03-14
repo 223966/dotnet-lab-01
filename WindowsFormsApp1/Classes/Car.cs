@@ -12,7 +12,7 @@ namespace WindowsFormsApp1.Classes
 
         public void Accelerate(int change)
         {
-            this.Speed += change;
+            this.Speed = change;
         }
     }
 }

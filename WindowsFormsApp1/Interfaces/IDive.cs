@@ -8,6 +8,8 @@ namespace WindowsFormsApp1.Interfaces
 {
     interface IDive
     {
+        int Depth { get; set; }
+
         void Dive(int change);
     }
 }

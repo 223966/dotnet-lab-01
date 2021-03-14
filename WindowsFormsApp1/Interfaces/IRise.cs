@@ -8,6 +8,8 @@ namespace WindowsFormsApp1.Interfaces
 {
     interface IRise
     {
+        int Height { get; set; }
+
         void Rise(int change);
     }
 }
