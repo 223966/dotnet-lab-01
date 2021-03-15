@@ -67,7 +67,7 @@ namespace WindowsFormsApp1
             this.categoriesListBox.Name = "categoriesListBox";
             this.categoriesListBox.Size = new System.Drawing.Size(174, 260);
             this.categoriesListBox.TabIndex = 1;
-            this.categoriesListBox.SelectedIndexChanged += new System.EventHandler(this.categoriesListBox_SelectedIndexChanged);
+            this.categoriesListBox.SelectedIndexChanged += new System.EventHandler(this.OnSelectedCategoryChange);
             // 
             // addButton
             // 
@@ -77,7 +77,7 @@ namespace WindowsFormsApp1
             this.addButton.TabIndex = 2;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addButton.Click += new System.EventHandler(this.OnToyAddClick);
             // 
             // removeButton
             // 
@@ -87,7 +87,7 @@ namespace WindowsFormsApp1
             this.removeButton.TabIndex = 3;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
+            this.removeButton.Click += new System.EventHandler(this.OnToyRemoveClick);
             // 
             // toysListBox
             // 
@@ -99,7 +99,7 @@ namespace WindowsFormsApp1
             this.toysListBox.Size = new System.Drawing.Size(168, 260);
             this.toysListBox.TabIndex = 4;
             this.toysListBox.ValueMember = "Id";
-            this.toysListBox.SelectedIndexChanged += new System.EventHandler(this.toysListBox_SelectedIndexChanged);
+            this.toysListBox.SelectedIndexChanged += new System.EventHandler(this.OnSelectedToyChange);
             // 
             // speedGroupBox
             // 
@@ -121,7 +121,7 @@ namespace WindowsFormsApp1
             this.speedSlider.Name = "speedSlider";
             this.speedSlider.Size = new System.Drawing.Size(234, 56);
             this.speedSlider.TabIndex = 6;
-            this.speedSlider.ValueChanged += new System.EventHandler(this.speedSlider_ValueChanged);
+            this.speedSlider.ValueChanged += new System.EventHandler(this.OnSpeedSliderValueChange);
             // 
             // speedValue
             // 
@@ -152,7 +152,6 @@ namespace WindowsFormsApp1
             this.heightGroupBox.TabIndex = 7;
             this.heightGroupBox.TabStop = false;
             this.heightGroupBox.Visible = false;
-            this.heightGroupBox.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // heightSlider
             // 
@@ -160,7 +159,7 @@ namespace WindowsFormsApp1
             this.heightSlider.Name = "heightSlider";
             this.heightSlider.Size = new System.Drawing.Size(234, 56);
             this.heightSlider.TabIndex = 6;
-            this.heightSlider.ValueChanged += new System.EventHandler(this.heightSlider_ValueChanged);
+            this.heightSlider.ValueChanged += new System.EventHandler(this.OnHeightSliderValueChange);
             // 
             // heightValue
             // 
@@ -169,7 +168,6 @@ namespace WindowsFormsApp1
             this.heightValue.ReadOnly = true;
             this.heightValue.Size = new System.Drawing.Size(54, 22);
             this.heightValue.TabIndex = 1;
-            this.heightValue.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // heightLabel
             // 
@@ -192,7 +190,6 @@ namespace WindowsFormsApp1
             this.depthGroupBox.TabIndex = 8;
             this.depthGroupBox.TabStop = false;
             this.depthGroupBox.Visible = false;
-            this.depthGroupBox.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // depthSlider
             // 
@@ -201,7 +198,7 @@ namespace WindowsFormsApp1
             this.depthSlider.Name = "depthSlider";
             this.depthSlider.Size = new System.Drawing.Size(234, 56);
             this.depthSlider.TabIndex = 6;
-            this.depthSlider.ValueChanged += new System.EventHandler(this.depthSlider_ValueChanged);
+            this.depthSlider.ValueChanged += new System.EventHandler(this.OnDepthSliderValueChange);
             // 
             // depthValue
             // 
@@ -211,7 +208,6 @@ namespace WindowsFormsApp1
             this.depthValue.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.depthValue.Size = new System.Drawing.Size(54, 22);
             this.depthValue.TabIndex = 1;
-            this.depthValue.TextChanged += new System.EventHandler(this.depthValue_TextChanged);
             // 
             // depthLabel
             // 
@@ -240,7 +236,6 @@ namespace WindowsFormsApp1
             this.textBox1.Size = new System.Drawing.Size(59, 22);
             this.textBox1.TabIndex = 7;
             this.textBox1.Text = "km/h";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -273,7 +268,7 @@ namespace WindowsFormsApp1
             this.HelpButton = true;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.OnInit);
             this.speedGroupBox.ResumeLayout(false);
             this.speedGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedSlider)).EndInit();
